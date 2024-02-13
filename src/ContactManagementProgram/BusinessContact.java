@@ -12,4 +12,9 @@ public class BusinessContact extends Contact {
     public String getCompany(){
         return this.company;
     }
+
+    public void setContact(String name, String phoneNumber, String company){
+        super.setContact(name, phoneNumber);
+        this.company = company;
+    }
 }

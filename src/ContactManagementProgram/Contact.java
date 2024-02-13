@@ -16,5 +16,10 @@ public class Contact {
     public String getPhoneNumber(){
         return this.phoneNumber;
     }
+
+    public void setContact(String name, String phoneNumber){
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
 }
 

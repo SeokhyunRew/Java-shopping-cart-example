@@ -51,4 +51,30 @@ public class AddressBook {
             System.out.println("검색하려는 연락처가 비어있습니다.");
         }
     }
+
+    public boolean modifyContact(String name, String phoneNumber, String keep){
+        boolean temp = true;
+
+        if(!contactList.isEmpty()) {
+            for (Contact contact : contactList) {
+                if(contact.getName().equals(name)){
+                    // BusinessContact의 경우 회사 정보 출력
+                    if (contact instanceof BusinessContact) {
+                        ((BusinessContact) contact).setContact(name,phoneNumber,keep);
+                    } else{
+                        ((PersonalContact) contact).setContact(name,phoneNumber,keep);
+                    }
+                    temp = false;
+                }
+            }
+            if(temp){
+                System.out.println("수정하려는 사람이 연락처에 존재하지 않습니다.");
+                return false;
+            }
+        } else{
+            System.out.println("검색하려는 연락처가 비어있습니다.");
+            return false;
+        }
+        return true;
+    }
 }
