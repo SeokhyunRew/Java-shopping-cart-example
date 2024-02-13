@@ -42,6 +42,7 @@ public class AddressBook {
                         System.out.println(", 관계: " + ((PersonalContact) contact).getRelationship());
                     }
                     temp = false;
+                    break;
                 }
             }
             if(temp){
@@ -65,14 +66,37 @@ public class AddressBook {
                         ((PersonalContact) contact).setContact(name,phoneNumber,keep);
                     }
                     temp = false;
+                    break;
                 }
             }
             if(temp){
-                System.out.println("수정하려는 사람이 연락처에 존재하지 않습니다.");
+                System.out.println("수정하려는 연락처가 존재하지 않습니다.");
                 return false;
             }
         } else{
             System.out.println("검색하려는 연락처가 비어있습니다.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean deleteContact(String name) {
+        boolean temp = true;
+
+        if(!contactList.isEmpty()) {
+            for (int i = 0; i < contactList.size(); i++) {
+                if (contactList.get(i).getName().equals(name)) {
+                    contactList.remove(i);
+                    temp = false;
+                    break; // 제거했으면 반복문을 종료할 수 있습니다.
+                }
+            }
+            if(temp){
+                System.out.println("삭제하려는 연락처가 존재하지 않습니다.");
+                return false;
+            }
+        } else{
+            System.out.println("삭제하려는 연락처가 비어있습니다.");
             return false;
         }
         return true;

@@ -11,7 +11,7 @@ public class main {
         int choice;
         String name;
         String phoneNumber;
-        List<Contact> contactList = new ArrayList<>();;
+        List<Contact> contactList = new ArrayList<>();
 
         do {
             // 메뉴 출력
@@ -20,7 +20,8 @@ public class main {
             System.out.println("3. 연락처 출력");
             System.out.println("4. 연락처 검색");
             System.out.println("5. 연락처 수정");
-            System.out.println("6. 종료");
+            System.out.println("6. 연락처 삭제");
+            System.out.println("7. 종료");
             System.out.print("메뉴를 숫자 1~5중 입력해주세요: ");
 
             // 사용자 입력 받기
@@ -79,7 +80,7 @@ public class main {
                     // 검색 로직 구현
                     break;
                 case 5:
-                    System.out.println("수정할 대상의 이름을 입력하세요(이름은 변경하지 못합니다)");
+                    System.out.println("수정할 연락처의 이름을 입력하세요(이름은 변경하지 못합니다)");
                     // 추가 로직 구현
                     System.out.print("이름을 입력하세요: ");
                     name = scanner.nextLine();
@@ -96,13 +97,24 @@ public class main {
                         addressBookforModify.searchContact(name);
                     }
                     break;
+
                 case 6:
+                    System.out.print("삭제할 연락처의 이름을 입력하세요: ");
+                    name = scanner.nextLine();
+
+                    AddressBook addressBookfordelete = new AddressBook(contactList);
+                    if (addressBookfordelete.deleteContact(name)){
+                        System.out.println(name + "을(를) 삭제한 후의 연락처는 다음과 같습니다." );
+                        addressBookfordelete.displayContacts();
+                    }
+                    break;
+                case 7:
                     System.out.println("프로그램을 종료합니다.");
                     break;
                 default:
                     System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
             }
-        } while (choice != 6);
+        } while (choice != 7);
 
         scanner.close();
     }
